@@ -35,6 +35,14 @@ RUN composer install --no-dev --optimize-autoloader
 # Generate key (It will use the one from Render env in production, but this ensures build passes)
 RUN php artisan key:generate
 
+# Create SQLite database file
+RUN touch database/database.sqlite
+RUN chmod 777 database/database.sqlite
+RUN chmod 777 database
+
+# Run migrations
+RUN php artisan migrate --force
+
 # Config cache (Optional but good for production)
 RUN php artisan config:cache
 RUN php artisan route:cache
