@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number 19 Variations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Orbitron&family=Sacramento&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background: black;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        .loader-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            width: 100%;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #0a0a0a;
+            position: relative;
+        }
+
+        .loader-container.active {
+            display: flex;
+        }
+
+        /* Design 1: Elegant Fill */
+        .elegant-text {
+            font-family: 'Abril Fatface', cursive;
+            font-size: 150px;
+            fill: transparent;
+            stroke: white;
+            stroke-width: 2px;
+            stroke-dasharray: 500;
+            stroke-dashoffset: 500;
+            animation: elegantDraw 3s forwards infinite;
+        }
+
+        @keyframes elegantDraw {
+            0% {
+                stroke-dashoffset: 500;
+                fill: transparent;
+            }
+
+            50% {
+                stroke-dashoffset: 0;
+                fill: transparent;
+            }
+
+            100% {
+                stroke-dashoffset: 0;
+                fill: white;
+            }
+        }
+
+        /* Design 2: Digital/Tech */
+        .digital-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 120px;
+            fill: white;
+            opacity: 0;
+            animation: glitch 1s linear infinite;
+        }
+
+        .digital-bar {
+            width: 150px;
+            height: 4px;
+            background: #06b6d4;
+            margin-top: 10px;
+            animation: loadingBar 2s ease-in-out infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                opacity: 1;
+                transform: translate(0);
+            }
+
+            20% {
+                opacity: 0.8;
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                opacity: 1;
+                transform: translate(-2px, -2px);
+            }
+
+            60% {
+                opacity: 0.8;
+                transform: translate(2px, 2px);
+            }
+
+            80% {
+                opacity: 1;
+                transform: translate(2px, -2px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate(0);
+            }
+        }
+
+        @keyframes loadingBar {
+            0% {
+                width: 0;
+                opacity: 1;
+            }
+
+            50% {
+                width: 150px;
+                opacity: 1;
+            }
+
+            100% {
+                width: 150px;
+                opacity: 0;
+            }
+        }
+
+        /* Design 3: Handwritten Flow */
+        .hand-text {
+            font-family: 'Sacramento', cursive;
+            font-size: 180px;
+            fill: none;
+            stroke: white;
+            stroke-width: 3px;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: write 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes write {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="flex flex-col items-center py-10 px-4">
+
+    <h1 class="text-3xl font-bold mb-4">Choose a style for "19"</h1>
+    <p class="mb-8 text-gray-400">Click to switch designs</p>
+
+    <div class="flex gap-4 mb-8">
+        <button onclick="show('elegant')"
+            class="px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg text-white font-semibold border border-gray-600">
+            1. Elegant
+        </button>
+        <button onclick="show('digital')"
+            class="px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg text-white font-semibold border border-gray-600">
+            2. Digital
+        </button>
+        <button onclick="show('hand')"
+            class="px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg text-white font-semibold border border-gray-600">
+            3. Handwritten
+        </button>
+    </div>
+
+    <!-- Design 1: Elegant -->
+    <div id="loader-elegant" class="loader-container active max-w-lg">
+        <svg width="300" height="200" viewBox="0 0 300 200" class="flex items-center justify-center">
+            <text x="50%" y="70%" text-anchor="middle" class="elegant-text">19</text>
+        </svg>
+        <p class="mt-4 text-gray-400">Classy Outline-to-Fill</p>
+    </div>
+
+    <!-- Design 2: Digital -->
+    <div id="loader-digital" class="loader-container max-w-lg">
+        <div class="flex flex-col items-center">
+            <div class="digital-text">19</div>
+            <div class="digital-bar"></div>
+        </div>
+        <p class="mt-8 text-gray-400">Tech Glitch</p>
+    </div>
+
+    <!-- Design 3: Handwritten -->
+    <div id="loader-hand" class="loader-container max-w-lg">
+        <svg width="300" height="200" viewBox="0 0 300 200">
+            <text x="50%" y="70%" text-anchor="middle" class="hand-text">19</text>
+        </svg>
+        <p class="mt-4 text-gray-400">Fluid Handwriting</p>
+    </div>
+
+    <script>
+        function show(id) {
+            document.querySelectorAll('.loader-container').forEach(el => el.classList.remove('active'));
+            document.getElementById('loader-' + id).classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
